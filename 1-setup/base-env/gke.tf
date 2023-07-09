@@ -3,9 +3,9 @@
 # Source: https://github.com/hashicorp/learn-terraform-provision-gke-cluster/
 # https://learn.hashicorp.com/tutorials/terraform/gke 
 
-# Each GKE cluster will have 4 nodes. 
+# Each GKE cluster will have limited nodes since the free trial accounts has resource limits and quotas
 variable "gke_num_nodes" {
-  default     = 4
+  default     = 3
   description = "number of gke nodes"
 }
 
@@ -41,13 +41,13 @@ resource "google_container_cluster" "admin" {
 # Admin cluster - node pool 
 # GKE cluster can have 1 or more node pools.
 # node pools are collections of GCE instances that can scale up or down.
-#  here we have 1 node pool with 4 nodes. 
+#  here we have 1 node pool with 2 node to save the resources available in free trial
 resource "google_container_node_pool" "admin-nodes" {
   project = var.project_id 
   name       = "${google_container_cluster.admin.name}-node-pool"
   location   = "us-central1-f"
   cluster    = google_container_cluster.admin.name
-  node_count = var.gke_num_nodes
+  node_count = 2
 
   # GKE Node scopes are permissions for the nodes themselves: 
   # https://cloud.google.com/sdk/gcloud/reference/container/clusters/create#--scopes
@@ -67,7 +67,7 @@ resource "google_container_node_pool" "admin-nodes" {
       env = var.project_id
     }
 
-    machine_type = "e2-standard-4"
+    machine_type = "e2-standard-2"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
@@ -114,7 +114,7 @@ resource "google_container_node_pool" "dev-nodes" {
     }
 
     # preemptible  = true
-    machine_type = "e2-standard-4"
+    machine_type = "e2-standard-2"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
@@ -161,7 +161,7 @@ resource "google_container_node_pool" "staging-nodes" {
     }
 
     # preemptible  = true
-    machine_type = "e2-standard-4"
+    machine_type = "e2-standard-2"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
@@ -208,7 +208,7 @@ resource "google_container_node_pool" "prod-nodes" {
     }
 
     # preemptible  = true
-    machine_type = "e2-standard-4"
+    machine_type = "e2-standard-2"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
