@@ -38,8 +38,9 @@ Here, we set resource quotas for CPU and Memory on the entire frontend namespace
 ### 2. **Copy all the Resource Quota resources into your cymbalbank-policy repo.**
 
 ```
-for i in $(ls production-quotas/**/quota.yaml);
-cp $i cymbalbank-policy/namespaces/${$(dirname $i)#production-quotas/}
+for i in production-quotas/**/quota.yaml; do
+  cp "$i" "cymbalbank-policy/namespaces/${i#production-quotas/}"
+done
 ```
 
 Listing `quota.yaml` files in `cymbalbank-policy` directory,
