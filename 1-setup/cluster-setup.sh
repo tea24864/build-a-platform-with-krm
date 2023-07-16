@@ -83,12 +83,12 @@ gcloud services enable anthos.googleapis.com
 
 # Set up clusters for the CymbalBank app 
 setup_cluster "cymbal-dev" "us-east1-c" 
-setup_cluster "cymbal-staging" "us-central1-a" 
+setup_cluster "cymbal-staging" "us-east4-a" 
 setup_cluster "cymbal-prod" "us-west1-a"
 
 # Register all 4 clusters to the Anthos dashboard
 register_cluster "cymbal-dev" "us-east1-c" 
-register_cluster "cymbal-staging" "us-central1-a" 
+register_cluster "cymbal-staging" "us-east4-a" 
 register_cluster "cymbal-prod" "us-west1-a"
 register_cluster "cymbal-admin" "us-central1-f"
 

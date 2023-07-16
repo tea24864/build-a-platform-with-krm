@@ -126,7 +126,7 @@ resource "google_container_node_pool" "dev-nodes" {
 resource "google_container_cluster" "staging" {
   project = var.project_id 
   name     = "cymbal-staging"
-  location = "us-central1-a"
+  location = "us-east4-a"
 
   remove_default_node_pool = true
   initial_node_count = 1
@@ -141,7 +141,7 @@ resource "google_container_cluster" "staging" {
 resource "google_container_node_pool" "staging-nodes" {
   project = var.project_id 
   name       = "${google_container_cluster.staging.name}-node-pool"
-  location   = "us-central1-a"
+  location   = "us-east4-a"
   cluster    = google_container_cluster.staging.name
   node_count = var.gke_num_nodes
 
