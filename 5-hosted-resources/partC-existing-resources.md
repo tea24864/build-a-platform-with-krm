@@ -54,9 +54,9 @@ config-connector export \
 ### 4. **View the generated KRM resources.** 
 
 ```
-cat cloudsql/projects/$PROJECT_ID/SQLInstance/us-east1/cymbal-dev.yaml
-cat cloudsql/projects/$PROJECT_ID/SQLInstance/cymbal-dev/SQLDatabase/accounts-db.yaml
-cat cloudsql/projects/$PROJECT_ID/SQLInstance/cymbal-dev/SQLDatabase/ledger-db.yaml
+cat cloudsql/projects-$PROJECT_ID-SQLInstance-us-east1-cymbal-dev.yaml
+cat cloudsql/projects-$PROJECT_ID-SQLInstance-cymbal-dev-SQLDatabase-accounts-db.yaml
+cat cloudsql/projects-$PROJECT_ID-SQLInstance-cymbal-dev-SQLDatabase-ledger-db.yaml
 ```
 
 Expected output: 
@@ -126,9 +126,9 @@ These KRM files represent the live state of your Cloud SQL resources, originally
 
 ```
 kubectx cymbal-admin
-kubectl apply -f cloudsql/projects/$PROJECT_ID/SQLInstance/us-east1/cymbal-dev.yaml
-kubectl apply -f cloudsql/projects/$PROJECT_ID/SQLInstance/cymbal-dev/SQLDatabase/accounts-db.yaml
-kubectl apply -f cloudsql/projects/$PROJECT_ID/SQLInstance/cymbal-dev/SQLDatabase/ledger-db.yaml
+kubectl apply -f cloudsql/projects-$PROJECT_ID-SQLInstance-us-east1-cymbal-dev.yaml
+kubectl apply -f cloudsql/projects-$PROJECT_ID-SQLInstance-cymbal-dev-SQLDatabase-accounts-db.yaml
+kubectl apply -f cloudsql/projects-$PROJECT_ID-SQLInstance-cymbal-dev-SQLDatabase-ledger-db.yaml
 ```
 
 Expected output: 
